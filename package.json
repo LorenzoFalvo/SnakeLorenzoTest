@@ -25,6 +25,6 @@
         "vite-plugin-pwa": "^0.11.13"
     },
     "dependencies": {
-        "@gamindo/thunder": "^0.1.4"
+        "@gamindo/thunder": "^0.1.10"
     }
 }

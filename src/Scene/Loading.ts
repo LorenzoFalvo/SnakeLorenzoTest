@@ -1,4 +1,4 @@
-import { AnimationTrack, BaseGraphic, BitmapText, Scene } from "@gamindo/thunder";
+import { AnimationTrack, BaseGraphic, BitmapText, FadeManager, Scene } from "@gamindo/thunder";
 
 export class Loading extends Scene {
     private logoCompleted: boolean = false;
@@ -60,7 +60,7 @@ export class Loading extends Scene {
             timeline.addKey("introGamindo", "alpha", { time: 2850, value: 0 });
 
             timeline.start();
-
+            
             timeline.onComplete.subscribe(() => {
                 this.logoCompleted = true;
 
@@ -81,13 +81,16 @@ export class Loading extends Scene {
 
     private loadingAnimation() {
         // TODO: Create loading animation here
+        this.loadingComplete = true;
+        this.toNextRoom();
     }
 
     private toNextRoom(): void {
         this.loadingComplete = true;
-
         if (this.logoCompleted) {
             // TODO: Move to next scene
-        }
+            this.game.sceneManager.stop(this.name);
+            this.game.sceneManager.start("Snake");
+         }
     }
 }
