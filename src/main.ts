@@ -1,6 +1,6 @@
 import { Game, Log, RESIZE_MODE } from "@gamindo/thunder";
 import { Loading } from "./Scene/Loading";
-import { Snake } from "./Scene/Snake";
+import { SnakeGame } from "./Scene/SnakeGame";
 import "./style.css";
 
 window.onload = async (): Promise<void> => {
@@ -16,7 +16,7 @@ window.onload = async (): Promise<void> => {
     app.color = 0x191919;
 
     app.sceneManager.add(new Loading({ game: app, key: "Loading", resizeMode: RESIZE_MODE.FIT }));
-    app.sceneManager.add(new Snake({ game: app, key: "Snake", resizeMode: RESIZE_MODE.FIT }));
+    app.sceneManager.add(new SnakeGame({ game: app, key: "SnakeGame", resizeMode: RESIZE_MODE.FIT }));
     app.sceneManager.start("Loading");
 
     document.body.appendChild(app.view());
