@@ -80,7 +80,5 @@ export default class SnakeBody extends BaseGraphic {
         this.posY = y;
         this.row = row;
         this.col = col;
-
-        this.position.set(this.posX, this.posY)
     }
 }

@@ -46,8 +46,8 @@ export class SnakeGame extends Scene {
         this.snakeSpeed = 0.5;
         this.timestamp = 0;
 
-        // this.interactive = true;
-        // this.onPointerDown.subscribe(this.pointerDownLogic, this);
+        this.interactive = true;
+        this.onPointerDown.subscribe(this.pointerDownLogic, this);
         this.inputManager.actPress.subscribe(this.inputPressLogic, this);
 
         this.createGrid();
@@ -103,14 +103,15 @@ export class SnakeGame extends Scene {
         
         if(this.timestamp/1000 >= this.snakeSpeed){
             this.timestamp = 0;
-            console.log("next Dir: " + this.nextDirection);
+            // console.log("next Dir: " + this.nextDirection);
 
             if (this.nextDirection != DIRECTION.NONE) {
                 this.snakeDirection = this.nextDirection;
                 const nextCell: Cell = this.getNextCell(this.getHeadCell());
                 
-                console.log(nextCell);
+                // console.log(nextCell);
                 this.moveSnake(nextCell);
+                
             }
         }
     }
@@ -122,15 +123,49 @@ export class SnakeGame extends Scene {
         const head: SnakeBody = this.snakeBodyList[0];
         head.SetLastValue();
         head.SetNewValue(nextCell.posX, nextCell.posY, nextCell.GetRow(), nextCell.GetCol());
-        console.log("NextCell_X: " + nextCell.posX);
-        console.log("NextCell_Y: " + nextCell.posY);
-
-        // head.posX = nextCell.posX;
-        // head.posY = nextCell.posY;
+        // console.log("NextCell_X: " + nextCell.posX);
+        // console.log("NextCell_Y: " + nextCell.posY);
+        head.position.set(nextCell.posX, nextCell.posY);
+        
         console.log("New position: " + head.position.x + " , " + head.position.y);
         this.board.cells[head.lastRow][head.lastCol].SetCellType(CellType.EMPTY, "", "");
+
+        //Move all Snake's Body
+        if(this.snakeBodyList.length > 1){
+            for(let i = 1; i <= this.snakeBodyList.length-1; i++){
+                const previousBody: SnakeBody = this.snakeBodyList[i-1];
+                const thisBody: SnakeBody = this.snakeBodyList[i];
+
+                thisBody.SetLastValue();
+                thisBody.SetNewValue(previousBody.lastPosX, previousBody.lastPosY, previousBody.lastRow, previousBody.lastCol);
+
+                thisBody.position.set(previousBody.posX, previousBody.posY);
+
+                this.board.cells[thisBody.row][thisBody.col].SetCellType(CellType.BODY, "", "");
+
+                if(i == this.snakeBodyList.length-1){
+                    this.board.cells[thisBody.lastRow][thisBody.lastCol].SetCellType(CellType.EMPTY, "", "");
+                }
+            }
+        }
+
         
-        this.snakeBodyList[0].SetNewValue(nextCell.posX, nextCell.posY, nextCell.GetRow(), nextCell.GetCol());
+    }
+
+    private createNewBody(): void{
+        const lastBody: SnakeBody = this.getLastSnakeBody();
+        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, "", "", lastBody.lastRow, lastBody.lastCol, false);
+        // newBody.alpha = 0;
+
+        this.board.cells[newBody.row][newBody.col].SetCellType(CellType.BODY, "", "");
+        this.snakeBodyList.push(newBody);
+
+        this.add(newBody);
+    }
+
+
+    public getLastSnakeBody(): SnakeBody {
+        return this.snakeBodyList[this.snakeBodyList.length - 1];
     }
 
     private updateDirection(newDirection: DIRECTION): void{
