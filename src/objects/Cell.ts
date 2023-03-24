@@ -1,4 +1,4 @@
-import { BaseGraphic, Scene} from "@gamindo/thunder";
+import { BaseGraphic, Group, Scene, Sprite} from "@gamindo/thunder";
 
 
 export enum CellType {
@@ -11,7 +11,7 @@ export enum CellType {
     EMPTY = -1,
 }
 
-export default class Cell extends BaseGraphic{
+export default class Cell extends Group{
     private row: number = 0;
     private col: number = 0;
     public posX: number = 0;
@@ -21,10 +21,10 @@ export default class Cell extends BaseGraphic{
     public lastXPos: number;
     public lastYPos: number;
     private cellType: CellType;
-    private object: BaseGraphic;
+    private object: Sprite;
 
     constructor(scene: Scene, row: number, col: number, posX: number, posY: number, size: number = 64) {
-        super(scene);
+        super(scene, posX, posY);
 
         this.row = row;
         this.col = col;
@@ -34,17 +34,16 @@ export default class Cell extends BaseGraphic{
         this.lastYPos = posY;
         this.visible = true;
         this.cellType = CellType.EMPTY;
-        this.object = new BaseGraphic(scene);
-        this.object.beginDraw(0xffff, false);
-        this.object.drawCircle(this.posX, this.posY, 25);
-        this.object.endDraw();
 
+        this.object = new Sprite(scene, "test/gamindoLogo");
+        // this.object.position.set(posX, posY);
+        this.scale.set(0.2, 0.2);
         this.object.alpha = 0;
-        this.scene.add(this.object);
-        // const graphic = new BaseGraphic(scene);
-        this.beginDraw(0xffffff, true);
-        this.drawRect(posX, posY, size, size, true);
-        this.endDraw();
+        this.add(this.object);
+
+        
+
+        // this.add(graphic);
     }
 
     public SetLastValue() {

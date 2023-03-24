@@ -1,7 +1,7 @@
 import { Sprite, Scene, BaseGraphic, ThunderMath, Point } from "@gamindo/thunder";
 
 
-export default class SnakeBody extends BaseGraphic {
+export default class SnakeBody extends Sprite {
     public posX: number;
     public posY: number;
     public lastPosX: number;
@@ -13,14 +13,14 @@ export default class SnakeBody extends BaseGraphic {
     private bodyFrames: string[];
 
     constructor(scene: Scene, x: number, y: number, texture: string, frame: string, row: number, col: number, size: number, isHead: boolean) {
-        super(scene);
+        super(scene, texture);
 
         this.posX = x;
         this.posY = y;
         this.lastPosX = x;
         this.lastPosY = y;
         this.position.set(x, y);
-
+        this.scale.set(0.07, 0.07);
         this.row = row;
         this.col = col;
         this.lastRow = row;
@@ -33,9 +33,9 @@ export default class SnakeBody extends BaseGraphic {
         }
 
         // this.setOrigin(0.5, 0.5);
-        this.beginDraw(0xfffff, false);
-        this.drawRect(0, 0, size, size, true);
-        this.endDraw();
+        // this.beginDraw(0xfffff, false);
+        // this.drawRect(0, 0, size, size, true);
+        // this.endDraw();
         
     }
 

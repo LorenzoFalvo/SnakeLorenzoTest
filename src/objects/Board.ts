@@ -1,4 +1,4 @@
-import { Group, Scene } from "@gamindo/thunder";
+import { BaseGraphic, Group, Scene } from "@gamindo/thunder";
 import Cell from "./Cell";
 
 
@@ -22,7 +22,11 @@ export class Board extends Group{
                 const posY: number = startY + offsetCell * row;
                 const newCell: Cell = new Cell(this.scene, row, col, posX, posY, offsetCell);
                 this.cells[row][col] = newCell;
-                scene.add(newCell);
+                const graphic = new BaseGraphic(this.scene);
+                graphic.beginDraw(0xffffff, true);
+                graphic.drawRect(posX, posY, 80, 80, true);
+                graphic.endDraw();
+                this.add([newCell, graphic]);
             }
         }
     }

@@ -1,0 +1,39 @@
+{
+  "frames": {
+    "gamindoLogo": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 368,
+        "h": 372
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 174,
+        "w": 368,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 720,
+        "h": 720
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "atlas.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 372,
+      "h": 376
+    },
+    "scale": 1
+  }
+}

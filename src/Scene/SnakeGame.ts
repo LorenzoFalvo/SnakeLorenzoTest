@@ -35,6 +35,7 @@ export class SnakeGame extends Scene {
 
     override preLoad(): void {
         super.preLoad();
+
     }
 
     override create(): void {
@@ -240,7 +241,7 @@ export class SnakeGame extends Scene {
 
     private createNewBody(): void{
         const lastBody: SnakeBody = this.getLastSnakeBody();
-        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, "", "", lastBody.lastRow, lastBody.lastCol, 70,false);
+        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, "test/LorenzoFalvo", "", lastBody.lastRow, lastBody.lastCol, 70,false);
         // newBody.alpha = 0;
 
         this.board.cells[newBody.row][newBody.col].SetCellType(CellType.BODY, "", "");
@@ -294,17 +295,17 @@ export class SnakeGame extends Scene {
         // var initialPosX = 360 - (SnakeGame.squareSize *(this.board.rowCount/2)) + (SnakeGame.squareSize/2);
         // let initialPosY = 640 - (SnakeGame.squareSize *(this.board.colCount/2)) + (SnakeGame.squareSize/2);
 
-        for (let row = 0; row < this.board.rowCount; row++) {
-            for (let col = 0; col < this.board.colCount; col++) {
-                this.add(this.board.cells[row][col]);
-            }
-        }
-
+        // for (let row = 0; row < this.board.rowCount; row++) {
+        //     for (let col = 0; col < this.board.colCount; col++) {
+        //         this.add(this.board.cells[row][col]);
+        //     }
+        // }
+        this.add(this.board);
         this.createSnake(this.board.cells[4][5].posX, this.board.cells[4][5].posY, 4, 5);
     }
 
     private createSnake(x: number, y: number, row: number, col: number): void{
-        const initSnake: SnakeBody = new SnakeBody(this, x, y, "", "", row, col, 70,true);
+        const initSnake: SnakeBody = new SnakeBody(this, x, y, "test/LorenzoFalvo", "", row, col, 70,true);
         this.board.cells[row][col].SetCellType(CellType.HEAD, "", "");
         this.snakeBodyList = new Array<SnakeBody>();
         this.snakeBodyList.push(initSnake);

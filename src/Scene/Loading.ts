@@ -22,6 +22,9 @@ export class Loading extends Scene {
         this.loader.onComplete.clear();
         this.loader.onComplete.subscribe(this.toNextRoom, this);
 
+        this.loader.addAsset("test", "assets/test.json");
+
+
         await this.introLogo();
     }
 

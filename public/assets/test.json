@@ -1,0 +1,63 @@
+{
+  "frames": {
+    "test/LorenzoFalvo": {
+      "frame": {
+        "x": 2,
+        "y": 2,
+        "w": 1103,
+        "h": 1212
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 5,
+        "w": 1103,
+        "h": 1212
+      },
+      "sourceSize": {
+        "w": 1106,
+        "h": 1219
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "test/gamindoLogo": {
+      "frame": {
+        "x": 2,
+        "y": 1218,
+        "w": 368,
+        "h": 372
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 176,
+        "y": 174,
+        "w": 368,
+        "h": 372
+      },
+      "sourceSize": {
+        "w": 720,
+        "h": 720
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "test.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1107,
+      "h": 1588
+    },
+    "scale": 1
+  }
+}
