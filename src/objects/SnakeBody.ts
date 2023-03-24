@@ -1,4 +1,4 @@
-import { Sprite, Scene, BaseGraphic } from "@gamindo/thunder";
+import { Sprite, Scene, BaseGraphic, ThunderMath, Point } from "@gamindo/thunder";
 
 
 export default class SnakeBody extends BaseGraphic {
@@ -19,6 +19,7 @@ export default class SnakeBody extends BaseGraphic {
         this.posY = y;
         this.lastPosX = x;
         this.lastPosY = y;
+        this.position.set(this.posX, this.posY);
 
         this.row = row;
         this.col = col;
@@ -33,8 +34,9 @@ export default class SnakeBody extends BaseGraphic {
 
         // this.setOrigin(0.5, 0.5);
         this.beginDraw(0xfffff, false);
-        this.drawRect(x, y, 40, 40, true);
+        this.drawRect(0, 0, 75, 75, true);
         this.endDraw();
+        
     }
 
     public SetLastValue() {
@@ -44,39 +46,41 @@ export default class SnakeBody extends BaseGraphic {
         this.lastPosY = this.posY;
     }
 
-    public SetNewValue(x: number, y: number){
-        this.posX += x;
-        this.posY += y;
-
-        this.position.set(this.posX, this.posY);
-    }
-
-    // public SetNewValue(x: number, y: number, row: number, col: number) {
-    //     const oldPos: Math.Vector2 = new Math.Vector2(this.posX, this.posY);
-    //     const newPos: Math.Vector2 = new Math.Vector2(x, y);
-    //     var dir: Math.Vector2 = newPos.subtract(oldPos);
-    //     var dirNormalized: Math.Vector2 = dir.normalize();
-    //     // console.log("dir: " + dirNormalized.x + ", " + dirNormalized.y);
-
-    //     if (dirNormalized.x == -1) {
-    //         this.setFlip(true, false);
-    //         this.setFrame(this.bodyFrames[2]);
-    //     } else if (dirNormalized.x == 1) {
-    //         this.setFlip(false, false);
-    //         this.setFrame(this.bodyFrames[2]);
-    //     }
-
-    //     if (dirNormalized.y == -1) {
-    //         this.setFlip(false, false);
-    //         this.setFrame(this.bodyFrames[1]);
-    //     } else if (dirNormalized.y == 1) {
-    //         this.setFlip(false, false);
-    //         this.setFrame(this.bodyFrames[0]);
-    //     }
-
+    // public SetNewValue(x: number, y: number){
     //     this.posX = x;
     //     this.posY = y;
-    //     this.row = row;
-    //     this.col = col;
+
+    //     this.position.set(this.posX, this.posY);
     // }
+
+    public SetNewValue(x: number, y: number, row: number, col: number) {
+        // const oldPos: Point = new Point(this.posX, this.posY);
+        // const newPos: Point = new Point(x, y);
+        // var dir: Point = newPos.subtract(oldPos);
+        // var dirNormalized: Point = dir.normalize();
+        // console.log("dir: " + dirNormalized.x + ", " + dirNormalized.y);
+
+        // if (dirNormalized.x == -1) {
+        //     this.setFlip(true, false);
+        //     this.setFrame(this.bodyFrames[2]);
+        // } else if (dirNormalized.x == 1) {
+        //     this.setFlip(false, false);
+        //     this.setFrame(this.bodyFrames[2]);
+        // }
+
+        // if (dirNormalized.y == -1) {
+        //     this.setFlip(false, false);
+        //     this.setFrame(this.bodyFrames[1]);
+        // } else if (dirNormalized.y == 1) {
+        //     this.setFlip(false, false);
+        //     this.setFrame(this.bodyFrames[0]);
+        // }
+
+        this.posX = x;
+        this.posY = y;
+        this.row = row;
+        this.col = col;
+
+        this.position.set(this.posX, this.posY)
+    }
 }
