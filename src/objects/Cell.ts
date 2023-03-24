@@ -21,6 +21,7 @@ export default class Cell extends BaseGraphic{
     public lastXPos: number;
     public lastYPos: number;
     private cellType: CellType;
+    private object: BaseGraphic;
 
     constructor(scene: Scene, row: number, col: number, posX: number, posY: number, size: number = 64) {
         super(scene);
@@ -33,7 +34,13 @@ export default class Cell extends BaseGraphic{
         this.lastYPos = posY;
         this.visible = true;
         this.cellType = CellType.EMPTY;
+        this.object = new BaseGraphic(scene);
+        this.object.beginDraw(0xffff, false);
+        this.object.drawCircle(this.posX, this.posY, 25);
+        this.object.endDraw();
 
+        this.object.alpha = 0;
+        this.scene.add(this.object);
         // const graphic = new BaseGraphic(scene);
         this.beginDraw(0xffffff, true);
         this.drawRect(posX, posY, size, size, true);
@@ -60,6 +67,32 @@ export default class Cell extends BaseGraphic{
 
     public SetCellType(cellType: CellType, key: string, frame: string): void {
         this.SetOnlyType(cellType);
+        
+        switch(cellType){
+            case CellType.EMPTY:
+                this.object.alpha = 0;
+                break;
+            
+            case CellType.BONUS:
+                this.object.alpha = 100;
+                break;
+            
+            case CellType.BODY:
+                this.object.alpha = 0;
+                break;
+
+            case CellType.HEAD:
+                this.object.alpha = 0;
+                break;
+
+            case CellType.MALUS:
+                this.object.alpha = 0;
+                break;
+
+            default: 
+                this.object.alpha = 100;
+        }
+
         // this.SetOnlyFrame(key, frame);
     }
 

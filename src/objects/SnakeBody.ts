@@ -12,14 +12,14 @@ export default class SnakeBody extends BaseGraphic {
     public lastCol: number;
     private bodyFrames: string[];
 
-    constructor(scene: Scene, x: number, y: number, texture: string, frame: string, row: number, col: number, isHead: boolean) {
+    constructor(scene: Scene, x: number, y: number, texture: string, frame: string, row: number, col: number, size: number, isHead: boolean) {
         super(scene);
 
         this.posX = x;
         this.posY = y;
         this.lastPosX = x;
         this.lastPosY = y;
-        this.position.set(this.posX, this.posY);
+        this.position.set(x, y);
 
         this.row = row;
         this.col = col;
@@ -34,7 +34,7 @@ export default class SnakeBody extends BaseGraphic {
 
         // this.setOrigin(0.5, 0.5);
         this.beginDraw(0xfffff, false);
-        this.drawRect(0, 0, 75, 75, true);
+        this.drawRect(0, 0, size, size, true);
         this.endDraw();
         
     }
