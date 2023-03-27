@@ -45,7 +45,7 @@ export class SnakeGame extends Scene {
         this.nextDirection = DIRECTION.NONE;
         this.snakeDirection = DIRECTION.NONE;
         this.currentPieces = 0;
-        this.snakeSpeed = 0.2;
+        this.snakeSpeed = 0.4;
         this.timestamp = 0;
         this.gameOver = false;
 
@@ -206,7 +206,7 @@ export class SnakeGame extends Scene {
 
         const head: SnakeBody = this.snakeBodyList[0];
         head.SetLastValue();
-        head.SetNewValue(nextCell.posX, nextCell.posY, nextCell.GetRow(), nextCell.GetCol());
+        head.SetNewValue(nextCell.posX, nextCell.posY, nextCell.GetRow(), nextCell.GetCol(), this.snakeDirection);
         // console.log("NextCell_X: " + nextCell.posX);
         // console.log("NextCell_Y: " + nextCell.posY);
         head.position.set(nextCell.posX, nextCell.posY);
@@ -224,8 +224,7 @@ export class SnakeGame extends Scene {
                 // console.log("Previous Last Position: " + previousBody.lastPosX + " , " + previousBody.lastPosY);
                 // console.log("New Body Position: " + previousBody.lastPosX + " , " + previousBody.lastPosY);
                 thisBody.SetLastValue();
-                thisBody.SetNewValue(previousBody.lastPosX, previousBody.lastPosY, previousBody.lastRow, previousBody.lastCol);
-
+                thisBody.SetNewValue(previousBody.lastPosX, previousBody.lastPosY, previousBody.lastRow, previousBody.lastCol, previousBody.lastDir);
                 thisBody.position.set(previousBody.lastPosX, previousBody.lastPosY);
 
                 this.board.cells[thisBody.row][thisBody.col].SetCellType(CellType.BODY, "", "");
@@ -241,7 +240,7 @@ export class SnakeGame extends Scene {
 
     private createNewBody(): void{
         const lastBody: SnakeBody = this.getLastSnakeBody();
-        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, "test/LorenzoFalvo", "", lastBody.lastRow, lastBody.lastCol, 70,false);
+        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, ["test/Lollo_idle_0", "test/Lollo_idle_1"], lastBody.lastRow, lastBody.lastCol, 70,false, lastBody.lastDir);
         // newBody.alpha = 0;
 
         this.board.cells[newBody.row][newBody.col].SetCellType(CellType.BODY, "", "");
@@ -305,7 +304,7 @@ export class SnakeGame extends Scene {
     }
 
     private createSnake(x: number, y: number, row: number, col: number): void{
-        const initSnake: SnakeBody = new SnakeBody(this, x, y, "test/LorenzoFalvo", "", row, col, 70,true);
+        const initSnake: SnakeBody = new SnakeBody(this, x, y, ["test/Lollo_idle_0", "test/Lollo_idle_1"] ,row, col, 70, true, 0);
         this.board.cells[row][col].SetCellType(CellType.HEAD, "", "");
         this.snakeBodyList = new Array<SnakeBody>();
         this.snakeBodyList.push(initSnake);

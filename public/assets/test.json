@@ -1,37 +1,13 @@
 {
   "frames": {
-    "test/LorenzoFalvo": {
-      "frame": {
-        "x": 2,
-        "y": 2,
-        "w": 1103,
-        "h": 1212
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 3,
-        "y": 5,
-        "w": 1103,
-        "h": 1212
-      },
-      "sourceSize": {
-        "w": 1106,
-        "h": 1219
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "test/gamindoLogo": {
       "frame": {
         "x": 2,
-        "y": 1218,
+        "y": 2,
         "w": 368,
         "h": 372
       },
-      "rotated": true,
+      "rotated": false,
       "trimmed": true,
       "spriteSourceSize": {
         "x": 176,
@@ -47,6 +23,150 @@
         "x": 0.5,
         "y": 0.5
       }
+    },
+    "test/Lollo_down_0": {
+      "frame": {
+        "x": 374,
+        "y": 2,
+        "w": 320,
+        "h": 320
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 320
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "test/Lollo_down_1": {
+      "frame": {
+        "x": 374,
+        "y": 326,
+        "w": 320,
+        "h": 320
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 320
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "test/Lollo_left_0": {
+      "frame": {
+        "x": 2,
+        "y": 378,
+        "w": 320,
+        "h": 320
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 320
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "test/Lollo_left_1": {
+      "frame": {
+        "x": 698,
+        "y": 2,
+        "w": 320,
+        "h": 320
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 320
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 320
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "test/Lollo_idle_0": {
+      "frame": {
+        "x": 698,
+        "y": 326,
+        "w": 320,
+        "h": 317
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 317
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 317
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "test/Lollo_idle_1": {
+      "frame": {
+        "x": 698,
+        "y": 647,
+        "w": 320,
+        "h": 317
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 320,
+        "h": 317
+      },
+      "sourceSize": {
+        "w": 320,
+        "h": 317
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
     }
   },
   "meta": {
@@ -55,8 +175,8 @@
     "image": "test.png",
     "format": "RGBA8888",
     "size": {
-      "w": 1107,
-      "h": 1588
+      "w": 1020,
+      "h": 966
     },
     "scale": 1
   }
