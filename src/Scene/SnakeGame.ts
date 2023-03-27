@@ -240,7 +240,7 @@ export class SnakeGame extends Scene {
 
     private createNewBody(): void{
         const lastBody: SnakeBody = this.getLastSnakeBody();
-        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, ["test/Lollo_idle_0", "test/Lollo_idle_1"], lastBody.lastRow, lastBody.lastCol, 70,false, lastBody.lastDir);
+        const newBody: SnakeBody = new SnakeBody(this, lastBody.lastPosX, lastBody.lastPosY, "test/Lollo_idle_", 0, lastBody.lastRow, lastBody.lastCol, 70,false, lastBody.lastDir);
         // newBody.alpha = 0;
 
         this.board.cells[newBody.row][newBody.col].SetCellType(CellType.BODY, "", "");
@@ -304,7 +304,7 @@ export class SnakeGame extends Scene {
     }
 
     private createSnake(x: number, y: number, row: number, col: number): void{
-        const initSnake: SnakeBody = new SnakeBody(this, x, y, ["test/Lollo_idle_0", "test/Lollo_idle_1"] ,row, col, 70, true, 0);
+        const initSnake: SnakeBody = new SnakeBody(this, x, y, "test/Lollo_idle_", 0 ,row, col, 70, true, 0);
         this.board.cells[row][col].SetCellType(CellType.HEAD, "", "");
         this.snakeBodyList = new Array<SnakeBody>();
         this.snakeBodyList.push(initSnake);

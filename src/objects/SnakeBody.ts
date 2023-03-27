@@ -2,7 +2,7 @@ import { Sprite, Scene, BaseGraphic, ThunderMath, Point, AnimatedSprite } from "
 import { DIRECTION } from "../Scene/SnakeGame";
 
 
-export default class SnakeBody extends AnimatedSprite {
+export default class SnakeBody extends Sprite {
     public posX: number;
     public posY: number;
     public lastPosX: number;
@@ -15,16 +15,18 @@ export default class SnakeBody extends AnimatedSprite {
     public currentDir: DIRECTION;
 
     // private bodyFrames: string[];
-    private idleAnim: string[];
-    private upAnim: string[] = ["test/Lollo_down_0", "test/Lollo_down_1"];
-    private downAnim: string[] = ["test/Lollo_down_0", "test/Lollo_down_1"];
-    private leftAnim: string[] = ["test/Lollo_left_0", "test/Lollo_left_1"];
-    private rightAnim: string[] = ["test/Lollo_left_0", "test/Lollo_left_1"];
-    private currentAnim: string[];
+    private idleAnim: string = "test/Lollo_idle_";
+    private upAnim: string = "test/Lollo_down_";
+    private downAnim: string = "test/Lollo_down_";
+    private leftAnim: string = "test/Lollo_left_";
+    private rightAnim: string = "test/Lollo_left_";
+    private currentAnim: string;
+    private currentIndexAnim: number = 0;
+    
 
 
-    constructor(scene: Scene, x: number, y: number, idleAnim: string[], row: number, col: number, size: number, isHead: boolean, direction: DIRECTION) {
-        super(scene, idleAnim);
+    constructor(scene: Scene, x: number, y: number, texture: string, initialFrame: number, row: number, col: number, size: number, isHead: boolean, direction: DIRECTION) {
+        super(scene, texture+initialFrame);
 
         this.posX = x;
         this.posY = y;
@@ -36,13 +38,13 @@ export default class SnakeBody extends AnimatedSprite {
         this.col = col;
         this.lastRow = row;
         this.lastCol = col;
-        this.idleAnim = idleAnim;
+        // this.idleAnim = idleAnim;
         this.lastDir = direction;
         this.currentDir = direction;
         
-        this.fps = 3;
-        this.isPaused = true;
-        this.currentAnim = idleAnim;
+        // this.fps = 3;
+        // this.isPaused = true;
+        this.currentAnim = this.idleAnim;
         this.updateAnim(direction);
 
         // this.setOrigin(0.5, 0.5);
@@ -100,7 +102,13 @@ export default class SnakeBody extends AnimatedSprite {
         {
             this.updateAnim(dir);
         } else{
-            this.texture == this.currentAnim[0] ? this.currentAnim[1] : this.currentAnim[0];
+            if(this.currentIndexAnim == 0){
+                this.currentIndexAnim++;
+            }else{
+                this.currentIndexAnim = 0;
+            }
+            const nextFrame: string = this.currentAnim + this.currentIndexAnim;
+            this.texture = nextFrame;
         }
 
     }
@@ -108,29 +116,35 @@ export default class SnakeBody extends AnimatedSprite {
     private updateAnim(newDir: DIRECTION): void{
         switch(newDir){
             case 1:
-                this.updateFrames({frames: this.downAnim});
+                // this.updateFrames({frames: this.downAnim});
+                this.currentAnim = this.upAnim;
                 this.scale.set(ThunderMath.abs(this.scale.x), this.scale.y * -1)
                 break;
 
             case -1:
-                this.updateFrames({frames: this.downAnim});
+                // this.updateFrames({frames: this.downAnim});
+                this.currentAnim = this.downAnim;
                 this.scale.set(ThunderMath.abs(this.scale.x), ThunderMath.abs(this.scale.y))
                 break;
 
             case 2:
-                this.updateFrames({frames: this.rightAnim});
+                // this.updateFrames({frames: this.rightAnim});
+                this.currentAnim = this.rightAnim;
                 this.scale.set(this.scale.x * -1, ThunderMath.abs(this.scale.y))
                 break;
 
             case -2:
-                this.updateFrames({frames: this.leftAnim});
+                // this.updateFrames({frames: this.leftAnim});
+                this.currentAnim = this.leftAnim;
                 this.scale.set(ThunderMath.abs(this.scale.x), ThunderMath.abs(this.scale.y))
                 break;
 
             default:
-                this.updateFrames({frames: this.idleAnim});
+                // this.updateFrames({frames: this.idleAnim});
+                this.currentAnim = this.idleAnim;
                 this.scale.set(ThunderMath.abs(this.scale.x), ThunderMath.abs(this.scale.y))
                 break;
         }
+        this.texture = this.currentAnim + this.currentIndexAnim;
     }
 }
